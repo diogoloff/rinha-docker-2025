@@ -1,0 +1,35 @@
+#!/bin/bash
+set -em
+
+APPSERVICE=/opt/rinha/Rinha
+
+runDir=/var/run/app
+mkdir -p $runDir
+pidfile="$runDir/rinha.pid"
+
+app_service_wait() {
+    if [ "$1" -ne 0 ]; then
+        return 1
+    fi
+
+    RET=1
+    for i in $(seq 1 30); do
+		if [ -f "$pidfile" ]; then
+			echo "Rinha Server Started"
+			RET=0
+            break
+		fi
+        sleep 1s
+    done
+    return $RET
+}
+
+if pidof $APPSERVICE > /dev/null; then
+	exit 0
+fi
+
+echo "Starting Rinha Server..."
+$APPSERVICE -path:/opt/rinha/ -daemon N -pidfile "$pidfile" &
+app_service_wait $?
+
+
