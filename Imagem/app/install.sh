@@ -18,11 +18,7 @@ cp /docker_build/app/Rinha /opt/rinha/Rinha
 rm -f /docker_build/app/Rinha
 
 cp /docker_build/app/libfbclient.so /opt/rinha/libfbclient.so
-#cp /docker_build/app/libfbclient.so.2 /opt/rinha/libfbclient.so.2
-#cp /docker_build/app/libfbclient.so.5.0.3 /opt/rinha/libfbclient.so.5.0.3
 rm -f /docker_build/app/libfbclient.so
-#rm -f /docker_build/app/libfbclient.so.2
-#rm -f /docker_build/app/libfbclient.so.5.0.3
 
 cp /docker_build/app/app.init /etc/my_init.d/20_app.init
 rm -f /docker_build/app/app.init
